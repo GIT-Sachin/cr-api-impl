@@ -6,7 +6,7 @@
 
 	<groupId>com.sachin.clashroyale</groupId>
 	<artifactId>clashroyale-api-impl</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>jar</packaging>
 
 	<name>clashroyale-api-impl</name>
@@ -62,6 +62,7 @@
 	</dependencies>
 
 	<build>
+	<finalName>clashroyale-api-impl</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
