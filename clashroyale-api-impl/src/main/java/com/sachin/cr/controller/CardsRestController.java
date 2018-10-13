@@ -12,13 +12,13 @@ import org.springframework.web.client.RestClientException;
 import com.sachin.cr.api.domain.Card;
 import com.sachin.cr.service.CardsServiceImpl;
 
-@RestController
+@RestController("/cards")
 public class CardsRestController {
 
 	@Autowired
 	private CardsServiceImpl cardService;
 	
-	@GetMapping("/cards")
+	@GetMapping("/getCardsList")
 	public List<Card> getCards() throws RestClientException, URISyntaxException, IOException {
 		return cardService.getCards();
 	}
