@@ -16,7 +16,25 @@ public class Clan {
 	private String description;
 	private String clanChestStatus;
 	private String clanChestPoints;
-	
+	private Integer rank;
+	private Integer previousRank;
+
+	public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+
+	public Integer getPreviousRank() {
+		return previousRank;
+	}
+
+	public void setPreviousRank(Integer previousRank) {
+		this.previousRank = previousRank;
+	}
+
 	public String getDescription() {
 		return description;
 	}

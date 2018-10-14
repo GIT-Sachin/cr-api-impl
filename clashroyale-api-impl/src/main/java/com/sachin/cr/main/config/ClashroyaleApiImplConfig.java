@@ -1,8 +1,6 @@
 package com.sachin.cr.main.config;
 
-import java.nio.charset.Charset;
-import java.util.Base64;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestTemplate;
 
+import com.sachin.cr.handlers.exception.CRAPIRestTemplateExceptionHandler;
 import com.ulisesbocchio.jasyptspringboot.annotation.EncryptablePropertySource;
 
 @EncryptablePropertySource("classpath:${spring.application.name}-${spring.profiles.active}.properties")
@@ -19,9 +18,12 @@ public class ClashroyaleApiImplConfig {
 	@Value("${cr.key}")
 	private String crKey;
 	
+	@Autowired
+	private CRAPIRestTemplateExceptionHandler errorHandler;
+	
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.build();
+		return builder.errorHandler(errorHandler).build();
 	}
 	
 	@Bean
@@ -29,9 +31,5 @@ public class ClashroyaleApiImplConfig {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Authorization", crKey);
 		return headers;
-		/*return new HttpHeaders() {{
-	         String authHeader = "Bearer " + new String( crKey );
-	         set( "Authorization", authHeader );
-	      }};*/
 	}
 }
