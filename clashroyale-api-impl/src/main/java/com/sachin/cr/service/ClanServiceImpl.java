@@ -18,7 +18,6 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.sachin.cr.api.domain.Card;
 import com.sachin.cr.api.domain.Clan;
 
 @Component
