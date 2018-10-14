@@ -1,6 +1,5 @@
 package com.sachin.cr.service;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +12,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -35,10 +35,14 @@ public class ClanServiceImpl {
 	@Autowired
 	private HttpHeaders headers;
 
-	public List<Clan> getClansByFilter(Map<String,String> filterParams) throws RestClientException, URISyntaxException {
+	public List<Clan> getClansByFilter(Map<String, Object> filterParams)
+			throws RestClientException, URISyntaxException {
+		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(crApiBaseUrl + "/clans");
+		String key = filterParams.keySet().iterator().next();
+		builder.queryParam(key, filterParams.get(key));
 		Gson gson = new Gson();
 		String cardsResponse = restTemplate
-				.exchange(new URI(crApiBaseUrl + "/clans"), HttpMethod.GET, new HttpEntity<>(headers), String.class)
+				.exchange(builder.build(filterParams), HttpMethod.GET, new HttpEntity<>(headers), String.class)
 				.getBody();
 		JsonObject obj = new JsonParser().parse(cardsResponse).getAsJsonObject();
 		List<Clan> cards = gson.fromJson((obj.get("items")).getAsJsonArray(), new TypeToken<List<Clan>>() {
