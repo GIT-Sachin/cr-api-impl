@@ -20,11 +20,6 @@ public class CRAPIRestTemplateExceptionHandler implements ResponseErrorHandler {
 	Logger LOG = LoggerFactory.getLogger(getClass());
 
 	@Override
-	public boolean hasError(ClientHttpResponse response) throws IOException {
-		return (response.getStatusCode().is4xxClientError() || response.getStatusCode().is5xxServerError());
-	}
-
-	@Override
 	public void handleError(ClientHttpResponse response) throws IOException,CRAPIException {
 		Gson gson = new Gson();
 		String s = new BufferedReader(new InputStreamReader(response.getBody())).lines().collect(Collectors.joining("\n"));
@@ -46,6 +41,11 @@ public class CRAPIRestTemplateExceptionHandler implements ResponseErrorHandler {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public boolean hasError(ClientHttpResponse response) throws IOException {
+		return (response.getStatusCode().is4xxClientError() || response.getStatusCode().is5xxServerError());
 	}
 
 }

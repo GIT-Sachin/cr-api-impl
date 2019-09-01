@@ -50,15 +50,6 @@ public class LocationServiceImpl {
 
 	}
 
-	public Location getLocationByLocationId(String locationId) throws RestClientException, URISyntaxException {
-		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(crApiBaseUrl + "/locations/{locationId}");
-		Gson gson = new Gson();
-		String locationResponse = restTemplate.exchange(builder.buildAndExpand(locationId).toUri(), HttpMethod.GET,
-				new HttpEntity<>(headers), String.class).getBody();
-		Location location = gson.fromJson(locationResponse, Location.class);
-		return location;
-	}
-
 	public List<Clan> getClanRankingsByLocationId(String locationId) {
 		UriComponentsBuilder builder = UriComponentsBuilder
 				.fromHttpUrl(crApiBaseUrl + "/locations/{locationId}/rankings/clans");
@@ -83,6 +74,15 @@ public class LocationServiceImpl {
 			private static final long serialVersionUID = 1L;
 		}.getType());
 		return clans;
+	}
+
+	public Location getLocationByLocationId(String locationId) throws RestClientException, URISyntaxException {
+		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(crApiBaseUrl + "/locations/{locationId}");
+		Gson gson = new Gson();
+		String locationResponse = restTemplate.exchange(builder.buildAndExpand(locationId).toUri(), HttpMethod.GET,
+				new HttpEntity<>(headers), String.class).getBody();
+		Location location = gson.fromJson(locationResponse, Location.class);
+		return location;
 	}
 
 	public List<Player> getPlayerRankingsByLocationId(String locationId) {

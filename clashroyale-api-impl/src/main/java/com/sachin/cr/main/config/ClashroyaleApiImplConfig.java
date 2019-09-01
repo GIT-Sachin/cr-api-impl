@@ -22,14 +22,14 @@ public class ClashroyaleApiImplConfig {
 	private CRAPIRestTemplateExceptionHandler errorHandler;
 	
 	@Bean
-	public RestTemplate restTemplate(RestTemplateBuilder builder) {
-		return builder.errorHandler(errorHandler).build();
-	}
-	
-	@Bean
 	public HttpHeaders httpHeaders() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.set("Authorization", crKey);
 		return headers;
+	}
+	
+	@Bean
+	public RestTemplate restTemplate(RestTemplateBuilder builder) {
+		return builder.errorHandler(errorHandler).build();
 	}
 }

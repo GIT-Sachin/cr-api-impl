@@ -39,19 +39,19 @@ public class ClansRestController {
 		return clanService.getClansByFilter(filterParms);
 	}
 
-	@GetMapping("/getClansByMinMembers")
-	public List<Clan> getClansByMinMembers(@RequestParam("minMembers") Integer minMem)
-			throws RestClientException, URISyntaxException, IOException {
-		Map<String, Object> filterParms = new HashMap<>();
-		filterParms.put("minMembers", minMem);
-		return clanService.getClansByFilter(filterParms);
-	}
-
 	@GetMapping("/getClansByMaxMembers")
 	public List<Clan> getClansByMaxMembers(@RequestParam("maxMembers") Integer maxMem)
 			throws RestClientException, URISyntaxException, IOException {
 		Map<String, Object> filterParms = new HashMap<>();
 		filterParms.put("maxMembers", maxMem);
+		return clanService.getClansByFilter(filterParms);
+	}
+
+	@GetMapping("/getClansByMinMembers")
+	public List<Clan> getClansByMinMembers(@RequestParam("minMembers") Integer minMem)
+			throws RestClientException, URISyntaxException, IOException {
+		Map<String, Object> filterParms = new HashMap<>();
+		filterParms.put("minMembers", minMem);
 		return clanService.getClansByFilter(filterParms);
 	}
 

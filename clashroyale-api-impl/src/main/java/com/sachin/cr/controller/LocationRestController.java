@@ -37,6 +37,21 @@ public class LocationRestController {
 	/**
 	 * 
 	 * @param locationId
+	 * @return Clans ordered by rankings based on locationId
+	 */
+	@GetMapping("{locationId}/rankings/clans")
+	public List<Clan> getClanRankingsByLocationId(@PathVariable("locationId") String locationId) {
+		return locationService.getClanRankingsByLocationId(locationId);
+	}
+
+	@GetMapping("{locationId}/rankings/clanwars")
+	public List<Clan> getClanWarRankingsByLocationId(@PathVariable("locationId") String locationId) {
+		return locationService.getClanWarRankingsByLocationId(locationId);
+	}
+	
+	/**
+	 * 
+	 * @param locationId
 	 * @return Location object for corresponding locationId
 	 * @throws RestClientException
 	 * @throws URISyntaxException
@@ -46,26 +61,11 @@ public class LocationRestController {
 			throws RestClientException, URISyntaxException {
 		return locationService.getLocationByLocationId(locationId);
 	}
-
-	/**
-	 * 
-	 * @param locationId
-	 * @return Clans ordered by rankings based on locationId
-	 */
-	@GetMapping("{locationId}/rankings/clans")
-	public List<Clan> getClanRankingsByLocationId(@PathVariable("locationId") String locationId) {
-		return locationService.getClanRankingsByLocationId(locationId);
-	}
+	
 	
 	@GetMapping("{locationId}/rankings/players")
 	public List<Player> getPlayerRankingsByLocationId(@PathVariable("locationId") String locationId) {
 		return locationService.getPlayerRankingsByLocationId(locationId);
-	}
-	
-	
-	@GetMapping("{locationId}/rankings/clanwars")
-	public List<Clan> getClanWarRankingsByLocationId(@PathVariable("locationId") String locationId) {
-		return locationService.getClanWarRankingsByLocationId(locationId);
 	}
 	
 }
