@@ -1,5 +1,6 @@
 package com.sachin.cr.api.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -9,6 +10,9 @@ public class Player {
 
 	private String tag;
 	private String name;
+	private Integer crowns;
+	private Integer kingTowerHitPoints;
+	private List<Integer> princessTowerHitPoints;
 	private Integer expLevel;
 	private Integer trophies;
 	private Arena arena;
@@ -39,12 +43,45 @@ public class Player {
 	private Integer tournamentCardsWon;
 	private Integer tournamentBattleCount;
 	private Integer warDayWins;
-
 	private Integer clanCardsCollected;
-
 	private Integer starPoints;
-
 	private List<Card> currentDeck;
+	private Integer startingTrophies;
+	private Integer previousRank;
+	private Integer rank;
+	private Date lastSeen;
+
+	public Integer getStartingTrophies() {
+		return startingTrophies;
+	}
+
+	public void setStartingTrophies(Integer startingTrophies) {
+		this.startingTrophies = startingTrophies;
+	}
+
+	public Integer getCrowns() {
+		return crowns;
+	}
+
+	public void setCrowns(Integer crowns) {
+		this.crowns = crowns;
+	}
+
+	public Integer getKingTowerHitPoints() {
+		return kingTowerHitPoints;
+	}
+
+	public void setKingTowerHitPoints(Integer kingTowerHitPoints) {
+		this.kingTowerHitPoints = kingTowerHitPoints;
+	}
+
+	public List<Integer> getPrincessTowerHitPoints() {
+		return princessTowerHitPoints;
+	}
+
+	public void setPrincessTowerHitPoints(List<Integer> princessTowerHitPoints) {
+		this.princessTowerHitPoints = princessTowerHitPoints;
+	}
 
 	public List<Achievement> getAchievements() {
 		return achievements;
@@ -189,9 +226,11 @@ public class Player {
 	public void setAchievements(List<Achievement> achievements) {
 		this.achievements = achievements;
 	}
+
 	public void setArena(Arena arena) {
 		this.arena = arena;
 	}
+
 	public void setBadges(List<Badge> badges) {
 		this.badges = badges;
 	}

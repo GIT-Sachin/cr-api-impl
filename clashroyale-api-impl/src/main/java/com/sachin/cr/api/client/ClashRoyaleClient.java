@@ -8,14 +8,14 @@ import org.springframework.web.client.RestTemplate;
 public class ClashRoyaleClient {
 
 	@Autowired
-	private RestTemplate restTemplate;
+	protected RestTemplate restTemplate;
 
 	@Value("${cr.base.url}")
-	private String crApiBaseUrl;
+	protected String crApiBaseUrl;
 
 	@Value("${cr.key}")
-	private String crKey;
+	protected String crKey;
 
 	@Autowired
-	private HttpHeaders headers;
+	protected HttpHeaders headers;
 }
