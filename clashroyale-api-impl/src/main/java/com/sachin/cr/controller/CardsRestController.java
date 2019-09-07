@@ -17,9 +17,9 @@ public class CardsRestController {
 
 	@Autowired
 	private CardsServiceImpl cardService;
-	
+
 	@GetMapping("/getCardsList")
 	public List<Card> getCards() throws RestClientException, URISyntaxException, IOException {
-		return cardService.getCards();
+		return cardService.getAllCards().getItems();
 	}
 }

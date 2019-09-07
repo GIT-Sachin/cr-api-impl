@@ -1,23 +1,33 @@
 package com.sachin.cr.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.util.Assert;
+
+import com.sachin.cr.api.client.PlayersClient;
+import com.sachin.cr.api.domain.Battle;
+import com.sachin.cr.api.domain.Player;
+import com.sachin.cr.api.domain.UpcomingChest;
 
 @Component
 public class PlayerServiceImpl {
 
-	@Autowired
-	private RestTemplate restTemplate;
+	private PlayersClient playerClient;
 
-	@Value("${cr.base.url}")
-	private String crApiBaseUrl;
+	public Player getPlayerByTag(String playerTag) {
+		Assert.notNull(playerTag, "Player tag cannot be null");
+		return playerClient.getPlayerByPlayerTag(playerTag);
+	}
 
-	@Value("${cr.key}")
-	private String crKey;
+	public List<UpcomingChest> getPlayersUpcomingChests(String playerTag) {
+		Assert.notNull(playerTag, "Player tag cannot be null");
+		return playerClient.getUpcomingChestsForPlayer(playerTag).getItems();
+	}
 
-	@Autowired
-	private HttpHeaders headers;
+	public List<Battle> getPlayerBattleWarLog(String playerTag) {
+		Assert.notNull(playerTag, "Player tag cannot be null");
+		return playerClient.getPlayerBattleLog(playerTag);
+	}
+
 }
