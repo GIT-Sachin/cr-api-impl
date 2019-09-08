@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClientException;
 
@@ -17,7 +16,7 @@ import com.sachin.cr.api.domain.Player;
 import com.sachin.cr.service.LocationServiceImpl;
 
 @RestController
-@RequestMapping(path = { "/locations" }, method = RequestMethod.GET)
+@RequestMapping(path = { "/locations" })
 public class LocationRestController {
 
 	@Autowired

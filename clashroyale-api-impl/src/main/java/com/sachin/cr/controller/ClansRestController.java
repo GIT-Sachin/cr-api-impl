@@ -47,14 +47,14 @@ public class ClansRestController {
 		return clanService.getClansByMinMembers(minMem);
 	}
 
-	@GetMapping("/getClansByMinScore")
+	@GetMapping("/getClansByMinScore/{minScore}")
 	public List<Clan> getClansByMinScore(@PathVariable("minScore") Integer minScore)
 			throws RestClientException, URISyntaxException, IOException {
 		return clanService.getClansByMinScore(minScore);
 	}
 
-	@GetMapping("/getClansByFilters")
-	public List<Clan> getClansByFilters(@RequestParam("requestParams") Map<String, String> filters) {
+	@GetMapping(value = { "/getClansByFilters", "/getClansByFilters/" })
+	public List<Clan> getClansByFilters(@RequestParam Map<String, String> filters) {
 		return clanService.getClansByFilter(filters);
 	}
 
