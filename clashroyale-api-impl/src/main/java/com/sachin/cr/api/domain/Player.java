@@ -3,7 +3,9 @@ package com.sachin.cr.api.domain;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
@@ -49,6 +51,7 @@ public class Player {
 	private Integer startingTrophies;
 	private Integer previousRank;
 	private Integer rank;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMdd'T'hhmmss.SSS'Z'")
 	private Date lastSeen;
 
 	public Integer getPreviousRank() {
