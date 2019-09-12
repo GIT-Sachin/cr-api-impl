@@ -51,6 +51,30 @@ public class Player {
 	private Integer rank;
 	private Date lastSeen;
 
+	public Integer getPreviousRank() {
+		return previousRank;
+	}
+
+	public void setPreviousRank(Integer previousRank) {
+		this.previousRank = previousRank;
+	}
+
+	public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+
+	public Date getLastSeen() {
+		return lastSeen;
+	}
+
+	public void setLastSeen(Date lastSeen) {
+		this.lastSeen = lastSeen;
+	}
+
 	public Integer getStartingTrophies() {
 		return startingTrophies;
 	}
