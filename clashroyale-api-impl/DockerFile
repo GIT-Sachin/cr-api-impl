@@ -1,0 +1,13 @@
+FROM openjdk:8
+RUN apt-get update
+RUN addgroup app_users
+RUN adduser --disabled-password --gecos "" clashroyaleapi
+RUN adduser clashroyaleapi app_users
+RUN mkdir app
+RUN cd app
+RUN export JAVA_HOME=/usr/local/openjdk-8/
+RUN export PATH=$JAVA_HOME/bin
+copy ./target/clashroyale-api-impl.jar .
+RUN chown -R clashroyaleapi:app_users /home/clashroyaleapi
+RUN su - clashroyaleapi
+ENTRYPOINT ["java","-jar","clashroyale-api-impl.jar"]
